@@ -17,11 +17,11 @@ public class MockApplication {
         MainWindow main = new MainWindow("DragonTalkZ");
         main.assignAdmin();
         try{
-            main.addThread(new Thread("title"));
+            main.addThread(new Thread("Main questions"));
         }catch(NotAuthorizedException ne){
-
+            System.out.println("You are not authorized");
         }catch(MustLoginException ee){
-
+            System.out.println("You are not logged in");
         }
         main.start();
     }

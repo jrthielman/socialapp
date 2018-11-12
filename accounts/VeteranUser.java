@@ -23,7 +23,7 @@ public class VeteranUser extends User {
     }
 
     void raiseInfluence(Admin admin, int amount){
-        System.out.println(admin.getName() + " has raised " + this.getUsername() +
+        System.out.println(admin.getUsername() + " has raised " + this.getUsername() +
                 " his influence by " + amount);
         influenceLevel += amount;
     }

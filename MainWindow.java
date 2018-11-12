@@ -31,8 +31,15 @@ public class MainWindow {
     }
 
     public void start(){
-        if(!userLogin()){
-            System.out.println("Goodbye!");
+        while(true){
+            if(!userLogin()){
+                if(Choice.listen("Do you want to logout? y/n: ").equalsIgnoreCase("y")){
+                    currentUser.logout();
+                    currentUser = null;
+                    System.out.println("Goodbye!");
+                    break;
+                }
+            }
         }
     }
 

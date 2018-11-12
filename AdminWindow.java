@@ -10,6 +10,7 @@ import com.example.socialapp.exceptions.NotAuthorizedException;
 import com.example.socialapp.messagesystem.Thread;
 import com.example.socialapp.miscellaneous.Choice;
 import com.example.socialapp.miscellaneous.Menu;
+import com.example.socialapp.miscellaneous.Styling;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,7 +129,6 @@ public class AdminWindow {
     }
 
     private List<VeteranUser> showAndGetVeteranUsers(){
-        System.out.println("Veteran users");
         List<VeteranUser> veteranList = new ArrayList<>();
         for(Account acc : AccountDatabase.getDatabase().getAccountlist()){
             if(acc instanceof VeteranUser){
@@ -137,7 +137,11 @@ public class AdminWindow {
                 System.out.println(acc.getUsername());
             }
         }
-        return veteranList;
+        if(!veteranList.isEmpty()){
+            return veteranList;
+        }else{
+            return null;
+        }
     }
 
     private void handleUserOptions(int input, Account user){
@@ -162,12 +166,19 @@ public class AdminWindow {
                     System.out.println(user.getUsername() + " is now a veteran user");
                     break;
                 case 4:
+                    System.out.println("Veteran users");
+                    Styling.separationLine(7);
                     List<VeteranUser> veterans = showAndGetVeteranUsers();
-                    String username = Choice.listen("which user");
-                    for(VeteranUser vu : veterans){
-                        if(vu.getUsername().equalsIgnoreCase(username.trim())){
-                            currentAdmin.raiseInfleunce(vu,2);
+                    Styling.spacing(0);
+                    if(veterans != null){
+                        String username = Choice.listen("which user");
+                        for(VeteranUser vu : veterans){
+                            if(vu.getUsername().equalsIgnoreCase(username.trim())){
+                                currentAdmin.raiseInfleunce(vu,2);
+                            }
                         }
+                    }else{
+                        System.out.println("You have no veteran users. Only veteran have an influence level.");
                     }
                     break;
 

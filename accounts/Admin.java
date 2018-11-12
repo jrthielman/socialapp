@@ -16,6 +16,7 @@ public class Admin extends Account {
     }
 
     public void raiseInfleunce(VeteranUser user, int amount){
+        System.out.println(this.getUsername());
         user.raiseInfluence(this, amount);
     }
 
